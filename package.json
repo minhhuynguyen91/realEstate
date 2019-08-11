@@ -1,0 +1,19 @@
+{
+  "name": "commercesite",
+  "version": "1.0.0",
+  "description": "Website to display merchandise",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/minhhuynguyen91/commerceSite.git"
+  },
+  "author": "Minh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/minhhuynguyen91/commerceSite/issues"
+  },
+  "homepage": "https://github.com/minhhuynguyen91/commerceSite#readme"
+}
