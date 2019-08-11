@@ -1,0 +1,25 @@
+nav.navbar.navbar-expand-lg.navbar-light.navbar-custom
+  a.navbar-brand(href='/')
+    img(src='/stylesheet/image/logo.jpg', width='50', height='50', alt='Logo')
+
+  button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+    span.navbar-toggler-icon
+  #navbarSupportedContent.collapse.navbar-collapse
+    ul.navbar-nav.mr-auto
+      li.nav-item
+        a.nav-link(href='/')
+          | Trang Chủ 
+      li.nav-item
+        a.nav-link(href='/contact') 
+          | Liên Hệ
+
+      li.nav-item
+        a.nav-link(href='/products') Sản phẩm  
+
+      if session.userId
+        li.nav-item
+          a.nav-link(href='/logout' onclick="return confirm('Are you sure to log out?')") Đăng xuất
+      else
+        li.nav-item
+          a.nav-link(href='/login') Đăng nhập
+
