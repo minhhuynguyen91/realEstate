@@ -20,6 +20,7 @@ exports.new = function(req, res) {
     .then((categories) => {
         res.render('products/new', {
         session : req.session,
+        action : "/products",
         categories,
         product
       })
@@ -34,6 +35,48 @@ exports.new = function(req, res) {
 }
 
 exports.post = function(req, res) {
+  // 1/ push the product Id to the category
+  // 2/ update the categoryId
+  Category.findOne({'name' : req.body.categoryName})
+    .then((category) => {
+      const product = new Product
+        ({
+          title : req.body.title,
+          content: req.body.content,
+          img_link: req.body.img_link,
+          quantity: req.body.quantity,
+          note: req.body.note,
+          displayOrder: (req.body.displayOrder) ? req.body.displayOrder : 999,
+          categoryId : category._id
+        });
+
+      product.save()
+        .then((product) => {
+          category.update({
+            $push : {productIds: product._id}
+          })
+            .then(() => {
+              res.redirect('/')
+            })
+
+            .catch((err) => {
+              console.log(err);
+              res.send('Cannot update the category')
+            })
+          
+        })
+
+        .catch((err) => {
+          console.log(err);
+          res.send('Cannot create the product');
+        });
+
+    })
+
+    .catch((err) => {
+      console.log(err);
+      res.send('Cannot find the category')
+    });
 
 
 }

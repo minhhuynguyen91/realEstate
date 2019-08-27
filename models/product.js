@@ -30,7 +30,7 @@ const productSchema = new mongoose.Schema({
 
   displayOrder: {
     type: Number,
-    default: 0
+    default: 999
   },
 
   categoryId: mongoose.Schema.Types.ObjectId,

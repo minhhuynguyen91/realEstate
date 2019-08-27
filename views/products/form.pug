@@ -27,13 +27,13 @@ form(action=action method="POST")
 
   .form-group
     label(for="category") Category
-    select#category.custom-select.mr-sm-2(name='categoryId')
+    select#category.custom-select.mr-sm-2(name='categoryName')
       option(selected='') Chọn ...
       each category in categories
-        option(select=category._id, name="_concertId")= category.name
+        option(select=category._id)= category.name
 
   .form-row
-    .form-group.col-lg-6.col-sm-12
+    .form-group.col-lg-4.col-sm-12
       label(for="Note") Note:
       input.form-control(
         type="text"
@@ -42,7 +42,17 @@ form(action=action method="POST")
         value=product.note
       ) 
   
-    .form-group.col-lg-6.col-sm-12
+    .form-group.col-lg-4.col-sm-12
+      label(for="quantity") Quantity:
+      input.form-control(
+        type="number"
+        id="quantity"
+        name="quantity"
+        value=product.quantity
+      ) 
+  
+
+    .form-group.col-lg-4.col-sm-12
       label(for="displayOrder") Display Order:
       input.form-control(
         type="number"
