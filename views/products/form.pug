@@ -1,0 +1,63 @@
+form(action=action method="POST")
+  .form-group
+    label(for="Title") Title:
+    input.form-control(
+      type="text"
+      id="title"
+      name="title"
+      value=product.title
+    ) 
+  
+  .form-group
+    label(for="Content") Content:
+    textarea.form-control(
+      type="text"
+      id="content"
+      name="content"
+    )
+  
+  .form-group
+    label(for="img_link") Image link:
+    input.form-control(
+      type="text"
+      id="img_link"
+      name="img_link"
+      value=product.img_link
+    )
+
+  .form-group
+    label(for="category") Category
+    select#category.custom-select.mr-sm-2(name='categoryId')
+      option(selected='') Chọn ...
+      each category in categories
+        option(select=category._id, name="_concertId")= category.name
+
+  .form-row
+    .form-group.col-lg-6.col-sm-12
+      label(for="Note") Note:
+      input.form-control(
+        type="text"
+        id="note"
+        name="note"
+        value=product.note
+      ) 
+  
+    .form-group.col-lg-6.col-sm-12
+      label(for="displayOrder") Display Order:
+      input.form-control(
+        type="number"
+        id="displayOrder"
+        name="displayOrder"
+        value=product.displayOrder
+      ) 
+    
+  
+  button.btn.btn-primary(type="submit" value="Submit") Submit
+
+script(type="text/javascript").
+  var newContent = `!{product.content}`
+
+  var easyMDE = new EasyMDE({
+    element: $('#content')[0],
+    initialValue: newContent
+  });

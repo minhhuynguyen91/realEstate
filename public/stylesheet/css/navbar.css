@@ -1,0 +1,29 @@
+.navbar-nav > li {
+  padding-left:2.5em;
+  padding-right:2.5em;
+}
+
+.navbar{
+  margin-bottom: 0;
+  min-height: 60px;
+
+}
+
+.navbar-custom {
+  background-color: #f1f1f1;
+}
+
+.navbar-custom .nav-item .nav-link {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.navbar-custom .nav-item .nav-link:hover {
+  border-style: solid;
+  color: red;
+}
+
+.navbar-custom .nav-item.dropdown .dropdown-item:hover {
+  border-style: solid;
+  color: red;
+}
