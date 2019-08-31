@@ -34,7 +34,9 @@ app.use(session({
 app.use('/', routes);
 app.use('/products', routes);
 app.use('/categories', routes);
+app.use('/user', routes);
 app.use('/login', routes);
+app.use('/logout', routes);
 
 
 app.use(cookieParser());

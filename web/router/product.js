@@ -82,11 +82,88 @@ exports.post = function(req, res) {
 }
 
 exports.edit = function(req, res) {
+  var objectId = mongo.ObjectId(req.params.id)
+  Category.find()
+    .then((categories) => {
+      Product.findOne({'_id' : objectId})
+      .then((product) => {
+        res.render('products/edit', {
+          session : req.session,
+          action : "/products/" + objectId + '?_method=put',
+          categories,
+          product
+        })
+      })
+
+      .catch((err) => {
+        console.log(err);
+        res.send('Cannot get the product')
+      });
+    })
+
+    .catch((err) => {
+      console.log(err);
+      res.send('Cannot get the categories')
+    })
 
 }
 
 exports.put = function(req, res) {
+  // 1 - Remove the productIds then update it with the current category 
+  // 2 - Update the category ID from product
+  var objectId = mongo.ObjectId(req.params.id)
+  Product.findOne({'_id' : objectId})
+    .then((product) => {
+      Category.findOne({'_id' : product.categoryId })
+        .then((oldCat) => {
+          oldCat.update({ $pull : { productIds: objectId } })
+          .then(() => {
+            Category.findOne({ 'name' : req.body.categoryName })
+              .then((newCat) => {
+                newCat.update({ $push : {productIds: objectId} })
+                  .then(() => {
+                    product.update({
+                    title : req.body.title,
+                    content: req.body.content,
+                    img_link: req.body.img_link,
+                    quantity: req.body.quantity,
+                    note: req.body.note,
+                    displayOrder: (req.body.displayOrder) ? req.body.displayOrder : 999,
+                    categoryId : newCat._id
+                  })
+                    .then(() => {
+                      res.redirect('/')
+                    })
 
+                    .catch((err) => {
+                      console.log(err);
+                      res.send('Cannot update the product')
+                    });
+                  })
+
+                  .catch((err) => {
+                    console.log(err);
+                    res.send('Cannot update the new category')
+                  })
+              })
+
+              .catch((err) => {
+                console.log(err);
+                res.send('Cannot find the new category');
+              });
+          })
+        })
+
+        .catch((err) => {
+          console.log(err);
+          res.send('Cannot remove the old category');
+        });
+    })
+
+    .catch((err) => {
+      console.log(err);
+      res.send('Cannot find the product');
+    });
 }
 
 exports.delete = function(req, res) {
