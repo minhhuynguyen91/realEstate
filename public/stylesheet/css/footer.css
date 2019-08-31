@@ -1,0 +1,14 @@
+.mbr-text {
+  font-style: normal;
+  line-height: 1.6;
+}
+
+.google-map {
+  height: 25rem;
+  position: relative;
+}
+
+.contact-info {
+  background-color: #465052;
+  color: white;
+}

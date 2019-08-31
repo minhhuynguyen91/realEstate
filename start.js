@@ -14,6 +14,7 @@ mongoose.connection
 
 
 require('./models/product');
+require('./models/category');
 require('./models/user');
 
 

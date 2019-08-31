@@ -7,7 +7,7 @@ var methodOverride = require('method-override');
 
 var cookieParser = require('cookie-parser');
 const session = require('express-session');
-const redis_client = require('./config/web/redis')
+
 
 app.set('views', path.join(__dirname + '/views'));
 app.set('view engine', 'pug');
@@ -15,6 +15,8 @@ app.set('view engine', 'pug');
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist'));
 app.use('/popper', express.static(__dirname + '/node_modules/popper.js/dist/umd'));
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist'));
+app.use('/easymde', express.static(__dirname + '/node_modules/easymde/dist'));
+
 
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(methodOverride('_method'));
@@ -31,7 +33,10 @@ app.use(session({
 
 app.use('/', routes);
 app.use('/products', routes);
+app.use('/categories', routes);
+app.use('/user', routes);
 app.use('/login', routes);
+app.use('/logout', routes);
 
 
 app.use(cookieParser());

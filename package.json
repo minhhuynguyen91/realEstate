@@ -4,7 +4,9 @@
   "description": "Website to display merchandise",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon ./start.js",
+    "start": "node start.js "
   },
   "repository": {
     "type": "git",
@@ -22,10 +24,12 @@
     "bootstrap": "^4.3.1",
     "cookie-parser": "^1.4.4",
     "dotenv": "^8.0.0",
+    "easymde": "^2.8.0",
     "express": "^4.17.1",
     "express-session": "^1.16.2",
     "express-validator": "^6.1.1",
     "jquery": "^3.4.1",
+    "marked": "^0.7.0",
     "method-override": "^3.0.0",
     "moment": "^2.24.0",
     "mongoose": "^5.6.9",
