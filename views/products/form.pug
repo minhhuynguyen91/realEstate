@@ -15,15 +15,25 @@ form(action=action method="POST")
       id="content"
       name="content"
     )
-  
-  .form-group
-    label(for="img_link") Image link:
-    input.form-control(
-      type="text"
-      id="img_link"
-      name="img_link"
-      value=product.img_link
-    )
+
+  .form-row  
+    .form-group.col-lg-8.col-sm-12
+      label(for="img_link") Image link:
+      input.form-control(
+        type="text"
+        id="img_link"
+        name="img_link"
+        value=product.img_link
+      )
+
+    .form-group.col-lg-4.col-sm-12.text-center
+      label(for="Front Page") Front Page
+      input.form-control(
+        type="checkbox"
+        id="frontPage"
+        name="frontPage"
+        value=product.frontPage
+      )
 
   .form-group
     label(for="category") Category

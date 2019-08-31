@@ -47,12 +47,13 @@ exports.post = function(req, res) {
           quantity: req.body.quantity,
           note: req.body.note,
           displayOrder: (req.body.displayOrder) ? req.body.displayOrder : 999,
+          frontPage: (req.body.frontPage == "on") ? true : false,
           categoryId : category._id
         });
 
       product.save()
         .then((product) => {
-          category.update({
+          category.updateOne({
             $push : {productIds: product._id}
           })
             .then(() => {
@@ -116,19 +117,20 @@ exports.put = function(req, res) {
     .then((product) => {
       Category.findOne({'_id' : product.categoryId })
         .then((oldCat) => {
-          oldCat.update({ $pull : { productIds: objectId } })
+          oldCat.updateOne({ $pull : { productIds: objectId } })
           .then(() => {
             Category.findOne({ 'name' : req.body.categoryName })
               .then((newCat) => {
-                newCat.update({ $push : {productIds: objectId} })
+                newCat.updateOne({ $push : {productIds: objectId} })
                   .then(() => {
-                    product.update({
+                    product.updateOne({
                     title : req.body.title,
                     content: req.body.content,
                     img_link: req.body.img_link,
                     quantity: req.body.quantity,
                     note: req.body.note,
                     displayOrder: (req.body.displayOrder) ? req.body.displayOrder : 999,
+                    frontPage: (req.body.frontPage == "on") ? true : false,
                     categoryId : newCat._id
                   })
                     .then(() => {

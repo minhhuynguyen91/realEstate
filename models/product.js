@@ -11,6 +11,11 @@ const productSchema = new mongoose.Schema({
     trim: true,
   },
 
+  frontPage: {
+    type: Boolean,
+    default: false,
+  },
+
   quantity: {
     type: Number,
     default: 0
