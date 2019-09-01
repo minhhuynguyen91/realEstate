@@ -8,34 +8,43 @@ exports.index = function(req, res) {
   if (req.query.cat) 
   {
     var objectId = mongo.ObjectId(req.query.cat)
-    
-    Category.aggregate([
-      {
-        $match : {_id : objectId} 
-      },
+    Category.find().sort({'displayOrder':1})
+      .then((categories) => {
+        Category.aggregate([
+        {
+          $match : {_id : objectId} 
+        },
 
-      {
-        $lookup:
         {
-          from: 'products',
-          localField: 'productIds',
-          foreignField: '_id',
-          as : 'catProducts'
+          $lookup:
+          {
+            from: 'products',
+            localField: 'productIds',
+            foreignField: '_id',
+            as : 'catProducts'
+          }
         }
-      }
-    ]).sort({'displayOrder' : 1}).then((products) => {
-        
-        res.render('homes/index', 
-        {
-          session: req.session,
-          products: products[0]
-        });
+      ]).sort({'displayOrder' : 1}).then((products) => {
+          
+          res.render('homes/index', 
+          {
+            session: req.session,
+            products: products[0].catProducts,
+            categories
+          });
+        })
+
+        .catch((err) => {
+          console.log(err);
+          res.send('Cannot get the category');
+        });    
       })
 
       .catch((err) => {
         console.log(err);
-        res.send('Cannot get the category');
-      });
+        res.send('Cannot get the categories')
+      })
+    
   }
   
   else 

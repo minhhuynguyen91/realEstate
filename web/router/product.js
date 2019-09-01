@@ -11,7 +11,29 @@ exports.index = function(req, res) {
 
 
 exports.id = function(req, res) {
-
+  var objectId = mongo.ObjectId(req.params.id);
+  Product.aggregate([
+    {
+      $match : {_id : objectId},
+    },
+    {
+      $lookup: 
+      {
+        from: 'categories',
+        localField: 'categoryId',
+        foreignField: '_id',
+        as: 'catData'
+      }
+    }
+  ]).then((product) => {
+    var marked = require('marked')
+    product[0].content = marked(product[0].content)
+    res.render('products/show', {
+      session : req.session,
+      product : product[0],
+      category : product[0].catData[0]
+    })
+  })
 }
 
 exports.new = function(req, res) {
