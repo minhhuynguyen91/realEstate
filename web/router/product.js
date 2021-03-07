@@ -5,7 +5,7 @@ const Category = mongoose.model('Category');
 
 
 exports.index = function(req, res) {
-  res.render('homes/index')
+  res.render('homes/index', {session: req.session})
 
 }
 

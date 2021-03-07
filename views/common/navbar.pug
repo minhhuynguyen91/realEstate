@@ -2,7 +2,7 @@ nav.navbar.navbar-expand-lg.navbar-light.navbar-custom
   a.navbar-brand(href='/')
     img(src='/stylesheet/image/logo.jpg', width='50', height='50', alt='Logo')
 
-  button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+  button.navbar-toggler(type='button', data-bs-toggle='collapse', data-bs-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
     span.navbar-toggler-icon
   #navbarSupportedContent.collapse.navbar-collapse
     ul.navbar-nav.mr-auto
@@ -13,10 +13,18 @@ nav.navbar.navbar-expand-lg.navbar-light.navbar-custom
       li.nav-item
         a.nav-link(href='/products') Sản phẩm  
 
+      li.nav-item.dropdown
+        a#navbarDarkDropdownMenuLink.nav-link.dropdown-toggle(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false')
+          | Create
+        ul.dropdown-menu.dropdown-menu-dark(aria-labelledby='navbarDarkDropdownMenuLink')
+          li
+            a.dropdown-item(href='/categories/new') Tạo thể loại
+            a.dropdown-item(href='/products/new') Sản phẩm
+
+
       if session.userId
         li.nav-item
           a.nav-link(href='/logout' onclick="return confirm('Are you sure to log out?')") Đăng xuất
       else
         li.nav-item
           a.nav-link(href='/login') Đăng nhập
-

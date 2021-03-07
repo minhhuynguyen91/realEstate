@@ -1,23 +1,25 @@
 form(action=action method="POST")
-  .form-group
-    label(for="Title") Title:
-    input.form-control(
-      type="text"
-      id="title"
-      name="title"
-      value=product.title
-    ) 
+  .row
+    .col
+      label(for="Title") Title:
+      input.form-control(
+        type="text"
+        id="title"
+        name="title"
+        value=product.title
+      ) 
   
-  .form-group
-    label(for="Content") Content:
-    textarea.form-control(
-      type="text"
-      id="content"
-      name="content"
-    )
+  .row
+    .col
+      label(for="Content") Content:
+      textarea.form-control(
+        type="text"
+        id="content"
+        name="content"
+      )
 
-  .form-row  
-    .form-group.col-lg-8.col-sm-12
+  .row  
+    .col-lg-8.col-sm-12
       label(for="img_link") Image link:
       input.form-control(
         type="text"
@@ -26,24 +28,25 @@ form(action=action method="POST")
         value=product.img_link
       )
 
-    .form-group.col-lg-4.col-sm-12.text-center
+    .col-lg-4.col-sm-12
       label(for="Front Page") Front Page
-      input.form-control(
+      input.form-check-input(
         type="checkbox"
         id="frontPage"
         name="frontPage"
         value=product.frontPage
       )
 
-  .form-group
-    label(for="category") Category
-    select#category.custom-select.mr-sm-2(name='categoryName')
-      option(selected='') Chọn ...
-      each category in categories
-        option(select=category._id)= category.name
+  .row
+    .col-lg-4.col-sm-12
+      label(for="category") Category
+      select#inputGroupSelect01.form-select(name='categoryName')
+        option(selected='') Chọn ...
+        each category in categories
+          option(select=category._id)= category.name
 
-  .form-row
-    .form-group.col-lg-4.col-sm-12
+  .row
+    .col-lg-4.col-sm-12
       label(for="Note") Note:
       input.form-control(
         type="text"
@@ -52,7 +55,7 @@ form(action=action method="POST")
         value=product.note
       ) 
   
-    .form-group.col-lg-4.col-sm-12
+    .col-lg-4.col-sm-12
       label(for="quantity") Quantity:
       input.form-control(
         type="number"
@@ -62,7 +65,7 @@ form(action=action method="POST")
       ) 
   
 
-    .form-group.col-lg-4.col-sm-12
+    .col-lg-4.col-sm-12
       label(for="displayOrder") Display Order:
       input.form-control(
         type="number"
@@ -71,8 +74,8 @@ form(action=action method="POST")
         value=product.displayOrder
       ) 
     
-  
-  button.btn.btn-primary(type="submit" value="Submit") Submit
+  .pt-2
+    button.btn.btn-primary(type="submit" value="Submit") Submit
 
 script(type="text/javascript").
   var newContent = `!{product.content}`

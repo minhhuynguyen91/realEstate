@@ -3,14 +3,16 @@ extends ../layouts/layout
 block content
   .container.pt-4
     .row
-      .col-lg-8.col-sm-12
+      .col-lg-12.col-sm-12
+        .product-title.text-center
+          span= category.name
+      .col-lg-12.col-sm-12
         img.img-fluid.product-image(src=product.img_link)
 
-      .col-lg-4.col-sm-12
-        .product-title
-          span= category.name
-          h1.pt-2.pb-2= product.title
-          h5.pt-1= "Số lượng: " + product.quantity
-          h5.pt-1= "Ghi chú: " + product.note  
+      .col-lg-12.col-sm-12
+        
+        h1.pt-2.pb-2= product.title
+        h5.pt-1= "Số lượng: " + product.quantity
+        h5.pt-1= "Ghi chú: " + product.note  
 
         .product-content.pt-3  !{product.content}

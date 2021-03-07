@@ -2,12 +2,15 @@ doctype html
 html
   head
     title Site General
-    // link(rel="shortcut icon" type="image/x-icon" href="/stylesheet/image/tab_favicon.ico")
+    //- link(rel="shortcut icon" type="image/x-icon" href="/stylesheet/image/tab_favicon.ico")
 
+    
+    //- script(src='/popper/popper.min.js')
     script(src='/jquery/jquery.min.js')
-    script(src='/popper/popper.min.js')
-    link(rel='stylesheet', type='text/css', href='/bootstrap/css/bootstrap.min.css')
     script(src='/bootstrap/js/bootstrap.min.js')
+
+    link(rel='stylesheet', type='text/css', href='/bootstrap/css/bootstrap.min.css')
+    //- script(src='/bootstrap/js/bootstrap.bundle.min.js')
     link(rel='stylesheet', type='text/css', href='/stylesheet/css/main.css')    
     link(rel='stylesheet', type='text/css', href='/easymde/easymde.min.css')
     script(src='/easymde/easymde.min.js')
@@ -19,3 +22,6 @@ html
     block content
 
     include ../common/footer
+
+    
+    

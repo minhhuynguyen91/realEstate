@@ -13,7 +13,7 @@ app.set('views', path.join(__dirname + '/views'));
 app.set('view engine', 'pug');
 
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist'));
-app.use('/popper', express.static(__dirname + '/node_modules/popper.js/dist/umd'));
+app.use('/popper', express.static(__dirname + '/node_modules/@popperjs/core/dist/umd'));
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist'));
 app.use('/easymde', express.static(__dirname + '/node_modules/easymde/dist'));
 
