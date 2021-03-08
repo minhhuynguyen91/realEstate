@@ -5,8 +5,12 @@ const Category = mongoose.model('Category');
 
 
 exports.index = function(req, res) {
-  res.render('homes/index', {session: req.session})
+  Product.find()
+    .then((products) => {
+      res.render('products/index', {session: req.session, products: products})
+    })
 
+    .catch((err) => {res.send(err)})
 }
 
 
@@ -190,6 +194,31 @@ exports.put = function(req, res) {
     });
 }
 
+// 1 - Remove related data from the category
+// 2 - Remove the product
 exports.delete = function(req, res) {
+  const objectId = new mongo.ObjectId(req.params.id);
+  Category.findOne({'productIds': objectId})
+    .then((cat) => {
+      cat.update({$pull : {productIds: objectId}})
+        .then(() => {
+          Product.deleteOne({'_id' : objectId})
+            .then(() => {
+              res.redirect('/products')
+            })
+
+            .catch((err) => {
+              res.send('Cannot delete product')
+            })
+        })
+
+        .catch((err) =>{
+          res.send('Cannot remove product ID from category')
+        })
+    })
+
+    .catch((err) => {
+      res.send('Cannot find category')
+    })
 
 }
