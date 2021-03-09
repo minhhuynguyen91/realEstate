@@ -32,10 +32,13 @@ exports.id = function(req, res) {
   ]).then((product) => {
     var marked = require('marked')
     product[0].content = marked(product[0].content)
+    var newsImageLinks = product[0].img_link.split(";").filter(String);
+
     res.render('products/show', {
       session : req.session,
       product : product[0],
-      category : product[0].catData[0]
+      category : product[0].catData[0],
+      productImgs: newsImageLinks
     })
   })
 }
@@ -65,11 +68,14 @@ exports.post = function(req, res) {
   // 2/ update the categoryId
   Category.findOne({'name' : req.body.categoryName})
     .then((category) => {
+      var newImageLink = req.body.img_link.replace(/\r?\n|\r/g, '');
+
       const product = new Product
         ({
           title : req.body.title,
           content: req.body.content,
-          img_link: req.body.img_link,
+          img_link: newImageLink,
+          img_thumbnail: req.body.img_thumbnail,
           quantity: req.body.quantity,
           note: req.body.note,
           displayOrder: (req.body.displayOrder) ? req.body.displayOrder : 999,
@@ -149,10 +155,13 @@ exports.put = function(req, res) {
               .then((newCat) => {
                 newCat.updateOne({ $push : {productIds: objectId} })
                   .then(() => {
+                    var newImageLink = req.body.img_link.replace(/\r?\n|\r/g, '');
+
                     product.updateOne({
                     title : req.body.title,
                     content: req.body.content,
-                    img_link: req.body.img_link,
+                    img_link: newImageLink,
+                    img_thumbnail: req.body.img_thumbnail,
                     quantity: req.body.quantity,
                     note: req.body.note,
                     displayOrder: (req.body.displayOrder) ? req.body.displayOrder : 999,

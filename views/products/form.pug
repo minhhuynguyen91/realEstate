@@ -8,7 +8,18 @@ form(action=action method="POST")
         name="title"
         value=product.title
       ) 
-  
+
+  .row
+    .col
+      label(for="Title") Product image thumbnail:
+      input.form-control(
+        type="text"
+        id="img_thumbnail"
+        name="img_thumbnail"
+        value=product.img_thumbnail
+      ) 
+
+
   .row
     .col
       label(for="Content") Content:
@@ -20,12 +31,11 @@ form(action=action method="POST")
 
   .row  
     .col-lg-8.col-sm-12
-      label(for="img_link") Image link:
-      input.form-control(
+      label(for="img_link") Image link, each image is separated by semicolon(;) :
+      textarea.form-control(
         type="text"
         id="img_link"
         name="img_link"
-        value=product.img_link
       )
 
     .col-lg-4.col-sm-12
@@ -79,7 +89,9 @@ form(action=action method="POST")
 
 script(type="text/javascript").
   var newContent = `!{product.content}`
+  var defaultImg = `!{product.img_link}`
 
+  $("#img_link").html(defaultImg)
   var easyMDE = new EasyMDE({
     element: $('#content')[0],
     initialValue: newContent

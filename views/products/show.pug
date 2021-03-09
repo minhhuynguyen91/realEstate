@@ -7,7 +7,14 @@ block content
         .product-title.text-center
           span= category.name
       .col-lg-12.col-sm-12
-        img.img-fluid.product-image(src=product.img_link)
+        img.img-fluid.product-image#imgDisplay(src=productImgs[0])
+
+      //- .col-lg-4.col-sm-4
+      .pt-2
+      each productImg in productImgs
+        .col-lg-3.col-sm-3
+          a(href="#" onclick="imgChoose(this);return false;" data-img-link=productImg)
+            img.product-mini-img.rounded.border.border-2(src=productImg)  
 
       .col-lg-12.col-sm-12
         
@@ -16,3 +23,11 @@ block content
         h5.pt-1= "Ghi chú: " + product.note  
 
         .product-content.pt-3  !{product.content}
+
+
+  script(type="text/javascript").
+    function imgChoose(e) {
+      const newImg = e.getAttribute('data-img-link')
+      var imgDisplay = document.getElementById('imgDisplay')
+      imgDisplay.src = newImg
+    }

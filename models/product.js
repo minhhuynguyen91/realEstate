@@ -21,6 +21,13 @@ const productSchema = new mongoose.Schema({
     default: 0
   },
 
+  img_thumbnail: {
+    type: String,
+    trim: true,
+    default: null
+  },
+
+
   img_link: {
     type: String,
     trim: true,

@@ -17,7 +17,7 @@ block content
           h1.text-center.pt-5 Hiện tại chưa có thông tin về sản phẩm này
 
   else
-
+  
     .container
       .row
         .col-lg-3
@@ -43,7 +43,7 @@ block content
 
                   div(class=divClass)
                     a(href="/products/" + product._id)
-                      img.img-fluid.product-image(src=product.img_link)
+                      img.img-fluid.product-image(src=product.img_thumbnail)
 
               if (frontPageCounter == 0)
                 .carousel-item.active
@@ -62,7 +62,7 @@ block content
               .col-lg-4.col-md-6.mb-4
                 .card.h-100
                   a(href='/products/' + product._id)
-                    img.card-img-top.img-thumbnail(src=product.img_link, alt='')
+                    img.card-img-top.img-thumbnail(src=product.img_thumbnail, alt='')
                   .card-body
                     h4.card-title
                       a(href='/products/' + product._id)= product.title
