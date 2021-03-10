@@ -3,6 +3,9 @@ const User = mongoose.model('User');
 
 exports.create = function(req, res) {
 
+  // console.log('I am being called')
+  // console.log(req.body)
+
   if(req.body.email &&
     req.body.password) {
 
@@ -11,7 +14,6 @@ exports.create = function(req, res) {
       password: req.body.password
     }
 
-    const user = User(req.body); 
     User.create(userData, function(err, user) {
       if (err) {
         return res.json({erros: err});

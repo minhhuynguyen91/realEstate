@@ -13,13 +13,14 @@ nav.navbar.navbar-expand-lg.navbar-light.navbar-custom
       li.nav-item
         a.nav-link(href='/products') Sản phẩm  
 
-      li.nav-item.dropdown
-        a#navbarDarkDropdownMenuLink.nav-link.dropdown-toggle(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false')
-          | Create
-        ul.dropdown-menu.dropdown-menu-dark(aria-labelledby='navbarDarkDropdownMenuLink')
-          li
-            a.dropdown-item(href='/categories/new') Tạo thể loại
-            a.dropdown-item(href='/products/new') Sản phẩm
+      if session.userId
+        li.nav-item.dropdown
+          a#navbarDarkDropdownMenuLink.nav-link.dropdown-toggle(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false')
+            | Create
+          ul.dropdown-menu.dropdown-menu-dark(aria-labelledby='navbarDarkDropdownMenuLink')
+            li
+              a.dropdown-item(href='/categories/new') Product category
+              a.dropdown-item(href='/products/new') Product details
 
 
       if session.userId

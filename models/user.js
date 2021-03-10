@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const config = require('../config/web/server');
 
 const userSchema = new mongoose.Schema({
   email: {
@@ -50,6 +52,12 @@ userSchema.pre('save', function(next){
     next();
   })
 })
+
+userSchema.methods.generateAuthToken = function() { 
+  const token = jwt.sign({ _id: this._id, isAdmin: this.isAdmin }, config.myprivatekey); //get the private key from the config file -> environment variable
+  return token;
+}
+
 
 var User = mongoose.model('User', userSchema);
 module.exports = User;

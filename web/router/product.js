@@ -119,7 +119,9 @@ exports.edit = function(req, res) {
   Category.find()
     .then((categories) => {
       Product.findOne({'_id' : objectId})
-      .then((product) => {
+      .then((product) => { 
+        product.img_link = product.img_link.replace(/;/g, ';\\r\\n');
+  
         res.render('products/edit', {
           session : req.session,
           action : "/products/" + objectId + '?_method=put',

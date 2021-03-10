@@ -21,7 +21,7 @@ app.use('/easymde', express.static(__dirname + '/node_modules/easymde/dist'));
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(methodOverride('_method'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(session({
   secret: 'work hard',

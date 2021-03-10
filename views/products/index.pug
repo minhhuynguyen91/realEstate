@@ -12,10 +12,12 @@ block content
               h3.card-title.text-center 
                 a(href='/products/' + product._id)= product.title
             
-              p
-                a.btn.btn-primary(href='/products/' + product._id + '/edit') Edit
-                
-                form(action="/products/" + product._id + "?_method=delete"  method="POST")
-                  button.btn.btn-danger(type="submit" value="Submit" onclick="return confirm('Are you sure to delete?')" ) Delete
-                  //- button.btn.btn-danger(type="submit" value="Submit") Delete
-  
+              if session.userId
+                p
+                  
+                  a.btn.btn-primary(href='/products/' + product._id + '/edit') Edit
+                  
+                  form(action="/products/" + product._id + "?_method=delete"  method="POST")
+                    button.btn.btn-danger(type="submit" value="Submit" onclick="return confirm('Are you sure to delete?')" ) Delete
+                    //- button.btn.btn-danger(type="submit" value="Submit") Delete
+    

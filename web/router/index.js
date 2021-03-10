@@ -14,26 +14,26 @@ routes.route('/')
   .get(homeController.index);
 
 routes.route('/products/new')
-  .get(productController.new);
+  .get(authController.authorization, productController.new);
 
 routes.route('/products')
   .get(productController.index)
-  .post(productController.post);
+  .post(authController.authorization, productController.post);
 
 routes.route('/products/:id') 
   .get(productController.id)
-  .put(productController.put)
+  .put(authController.authorization, productController.put)
   .delete(productController.delete);
 
 routes.route('/products/:id/edit')
-  .get(productController.edit);
+  .get(authController.authorization, productController.edit);
 
 
 routes.route('/categories/new')
-  .get(categoryController.new);
+  .get(authController.authorization, categoryController.new);
 
 routes.route('/categories')
-  .post(categoryController.post);
+  .post(authController.authorization, categoryController.post);
 
 routes.route('/login') 
   .get(authController.get)
@@ -42,8 +42,8 @@ routes.route('/login')
 routes.route('/logout') 
   .get(authController.logout);
 
-routes.route('/user')
-  .post(userController.create);
+// routes.route('/user')
+//   .post(userController.create);
 
 
 module.exports = routes;

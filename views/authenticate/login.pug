@@ -6,19 +6,22 @@ block content
     .row.justify-content-center.align-items-center.h-100
       .col.col-sm-6.col-md-6.col-lg-4.col-xl-3
         form(action="/login" method="post")
-          .form-group
-            label(for="email") Email
-            input.form-control(
-              type="text"
-              id="email"
-              name="email"
-            )
-
-          .form-group
-            label(for="password") Password
-            input.form-control(
-              type="password"
-              id="password"
-              name="password"
-            )
+          .row
+            .col
+              label(for="email") Email
+              input.form-control(
+                type="text"
+                id="email"
+                name="email"
+              )
+          .row
+            .col
+              label(for="password") Password
+              input.form-control(
+                type="password"
+                id="password"
+                name="password"
+              )
+          
+          
           button.btn.btn-info.btn-lg.btn-block(type="submit" value="Submit") Sign In
