@@ -20,3 +20,9 @@
   height: 100px;
   object-fit: contain;
 }
+
+.product-show {
+  height: 30vw;
+  width: 100%;
+  object-fit: contain;
+}

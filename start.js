@@ -2,7 +2,7 @@ const config = require('./config/web/server');
 const mongoose = require('mongoose');
 
 
-mongoose.connect(config.DATABASE, { useNewUrlParser: true });
+mongoose.connect(config.DATABASE, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.Promise = global.Promise;
 mongoose.connection
   .on('connected', () => {

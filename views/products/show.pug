@@ -7,22 +7,23 @@ block content
         .product-title.text-center
           span= category.name
       .col-lg-12.col-sm-12.text-center
-        img.rounded.border.border-2.img-fluid.product-image#imgDisplay(src=productImgs[0])
+        img.rounded.img-fluid.product-show#imgDisplay(src=productImgs[0])
 
       //- .col-lg-4.col-sm-4
       .pt-2
+      
       each productImg in productImgs
-        .col-lg-1.col-sm-1.pb-2
+        .col-lg-1.col-sm-2.pb-2
           a(href="#" onclick="imgChoose(this);return false;" data-img-link=productImg)
             img.product-mini-img.rounded.border.border-2(src=productImg)  
 
       .col-lg-12.col-sm-12
-        
-        h1.pt-2.pb-2= product.title
-        h5.pt-1= "Số lượng: " + product.quantity
-        h5.pt-1= "Ghi chú: " + product.note  
+        .product-detail  
+          h1.pt-2.pb-2= product.title
+          h5.pt-1= "Số lượng: " + product.quantity
+          h5.pt-1= "Ghi chú: " + product.note  
 
-        .product-content.pt-3  !{product.content}
+          .product-content.pt-3  !{product.content}
 
 
   script(type="text/javascript").

@@ -3,21 +3,22 @@ extends ../layouts/layout
 block content
   .container.pt-2
     h2.text-center.pt-2.pb-2 Sản phẩm
-    .row.row-cols-sm-1.row-cols-md-2.row-cols-lg-2.g-4
-      each product in products
-        .col
-          .card.h-100
-            img.card-img-top(src=product.img_link)
-            .card-body 
-              h3.card-title.text-center 
-                a(href='/products/' + product._id)= product.title
-            
-              if session.userId
-                p
-                  
-                  a.btn.btn-primary(href='/products/' + product._id + '/edit') Edit
-                  
-                  form(action="/products/" + product._id + "?_method=delete"  method="POST")
-                    button.btn.btn-danger(type="submit" value="Submit" onclick="return confirm('Are you sure to delete?')" ) Delete
-                    //- button.btn.btn-danger(type="submit" value="Submit") Delete
-    
+    .product-index
+      .row.row-cols-sm-1.row-cols-md-2.row-cols-lg-2.g-4
+        each product in products
+          .col
+            .card.h-100
+              img.card-img-top(src=product.img_link)
+              .card-body 
+                h3.card-title.text-center 
+                  a(href='/products/' + product._id)= product.title
+              
+                if session.userId
+                  p
+                    
+                    a.btn.btn-primary(href='/products/' + product._id + '/edit') Edit
+                    
+                    form(action="/products/" + product._id + "?_method=delete"  method="POST")
+                      button.btn.btn-danger(type="submit" value="Submit" onclick="return confirm('Are you sure to delete?')" ) Delete
+                      //- button.btn.btn-danger(type="submit" value="Submit") Delete
+      
