@@ -51,7 +51,7 @@ form(action=action method="POST")
     .col-lg-4.col-sm-12
       label(for="category") Category
       select#inputGroupSelect01.form-select(name='categoryName')
-        option(selected='') Chọn ...
+        option Chọn ...
         each category in categories
           option(select=category._id)= category.name
 
@@ -90,6 +90,19 @@ form(action=action method="POST")
 script(type="text/javascript").
   var newContent = `!{product.content}`
   var defaultImg = `!{product.img_link}`
+
+  var categoryId = `!{product.categoryId}`
+
+  var e = document.getElementById("inputGroupSelect01")
+
+
+  for(i=1; i<e.options.length; i++) {
+    if(e.options[i].attributes.select.value.localeCompare(categoryId) == 0) {
+      e.options.selectedIndex = i
+    }
+  }
+
+  //- console.log(categoryId)
 
   $("#img_link").html(defaultImg)
   var easyMDE = new EasyMDE({
