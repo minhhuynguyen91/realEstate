@@ -1,31 +1,32 @@
-nav.navbar.navbar-expand-lg.navbar-light.navbar-custom
-  a.navbar-brand(href='/')
-    img(src='/stylesheet/image/logo.jpg', width='50', height='50', alt='Logo')
+.container 
+  nav.navbar.navbar-expand-lg.navbar-light.navbar-custom
+    a.navbar-brand(href='/')
+      img(src='/stylesheet/image/logo.jpg', width='50', height='50', alt='Logo')
 
-  button.navbar-toggler(type='button', data-bs-toggle='collapse', data-bs-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
-    span.navbar-toggler-icon
-  #navbarSupportedContent.collapse.navbar-collapse
-    ul.navbar-nav.mr-auto
-      li.nav-item
-        a.nav-link(href='/')
-          | Trang Chủ 
-      
-      li.nav-item
-        a.nav-link(href='/products') Sản phẩm  
-
-      if session.userId
-        li.nav-item.dropdown
-          a#navbarDarkDropdownMenuLink.nav-link.dropdown-toggle(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false')
-            | Create
-          ul.dropdown-menu.dropdown-menu-dark(aria-labelledby='navbarDarkDropdownMenuLink')
-            li
-              a.dropdown-item(href='/categories/new') Product category
-              a.dropdown-item(href='/products/new') Product details
-
-
-      if session.userId
+    button.navbar-toggler(type='button', data-bs-toggle='collapse', data-bs-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      ul.navbar-nav.mr-auto
         li.nav-item
-          a.nav-link(href='/logout' onclick="return confirm('Are you sure to log out?')") Đăng xuất
-      else
+          a.nav-link.nav-tittle(href='/')
+            | Trang Chủ 
+        
         li.nav-item
-          a.nav-link(href='/login') Đăng nhập
+          a.nav-link.nav-tittle(href='/products') Sản phẩm  
+
+        if session.userId
+          li.nav-item.dropdown
+            a#navbarDarkDropdownMenuLink.nav-link.dropdown-toggle(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false')
+              | Create
+            ul.dropdown-menu.dropdown-menu-dark(aria-labelledby='navbarDarkDropdownMenuLink')
+              li
+                a.dropdown-item.nav-tittle(href='/categories/new') Product category
+                a.dropdown-item.nav-tittle(href='/products/new') Product details
+
+
+        if session.userId
+          li.nav-item
+            a.nav-link(href='/logout' onclick="return confirm('Are you sure to log out?')") Đăng xuất
+        else
+          li.nav-item
+            a.nav-link.nav-tittle(href='/login') Đăng nhập
