@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const productSchema = new mongoose.Schema({
+const realEstateSchema = new mongoose.Schema({
   title: {
     type: String,
     trim: true,
@@ -14,11 +14,6 @@ const productSchema = new mongoose.Schema({
   frontPage: {
     type: Boolean,
     default: false,
-  },
-
-  quantity: {
-    type: Number,
-    default: 0
   },
 
   img_thumbnail: {
@@ -45,7 +40,9 @@ const productSchema = new mongoose.Schema({
     default: 999
   },
 
-  categoryId: mongoose.Schema.Types.ObjectId,
+  districtId: mongoose.Schema.Types.ObjectId,
+
+  userId: mongoose.Schema.Types.ObjectId,
 
   created_date: {
     type: Date,
@@ -59,4 +56,4 @@ const productSchema = new mongoose.Schema({
   
 });
 
-module.exports = mongoose.model('Product', productSchema);
+module.exports = mongoose.model('realEstate', realEstateSchema);

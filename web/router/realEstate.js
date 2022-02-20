@@ -1,13 +1,13 @@
 var mongo = require('mongodb');
 const mongoose = require('mongoose');
-const Product = mongoose.model('Product');
-const Category = mongoose.model('Category');
+const RealEstate = mongoose.model('realEstate');
+const District = mongoose.model('District');
 
 
 exports.index = function(req, res) {
-  Product.find()
-    .then((products) => {
-      res.render('products/index', {session: req.session, products: products})
+  RealEstate.find()
+    .then((realEstates) => {
+      res.render('realEstates/index', {session: req.session, realEstates: realEstates})
     })
 
     .catch((err) => {res.send(err)})
@@ -16,25 +16,25 @@ exports.index = function(req, res) {
 
 exports.id = function(req, res) {
   var objectId = mongo.ObjectId(req.params.id);
-  Product.aggregate([
+  RealEstate.aggregate([
     {
       $match : {_id : objectId},
     },
     {
       $lookup: 
       {
-        from: 'categories',
-        localField: 'categoryId',
+        from: 'districts',
+        localField: 'districtId',
         foreignField: '_id',
-        as: 'catData'
+        as: 'districtData'
       }
     }
-  ]).then((product) => {
+  ]).then((realEstate) => {
     var marked = require('marked')
-    product[0].content = marked(product[0].content)
-    var newsImageLinks = product[0].img_link.split(";").filter(String);
+    realEstate[0].content = marked(realEstate[0].content)
+    var newsImageLinks = realEstate[0].img_link.split(";").filter(String);
 
-    res.render('products/show', {
+    res.render('realEstates/show', {
       session : req.session,
       product : product[0],
       category : product[0].catData[0],
@@ -44,21 +44,21 @@ exports.id = function(req, res) {
 }
 
 exports.new = function(req, res) {
-  const product = {};
-  Category.find()
-    .then((categories) => {
-        res.render('products/new', {
+  const realEstate = {};
+  District.find()
+    .then((districts) => {
+        res.render('realEstates/new', {
         session : req.session,
-        action : "/products",
-        categories,
-        product
+        action : "/realEstates",
+        districts,
+        realEstate
       })
 
     })
 
     .catch((err) => {
       console.log(err);
-      res.send('cannot get the categories');
+      res.send('cannot get the districts');
     })
 
 }
@@ -66,7 +66,7 @@ exports.new = function(req, res) {
 exports.post = function(req, res) {
   // 1/ push the product Id to the category
   // 2/ update the categoryId
-  Category.findOne({'name' : req.body.categoryName})
+  District.findOne({'name' : req.body.districtName})
     .then((category) => {
       var newImageLink = req.body.img_link.replace(/\r?\n|\r/g, '');
 

@@ -1,6 +1,6 @@
 var mongo = require('mongodb');
 const mongoose = require('mongoose');
-const Category = mongoose.model('Category');
+const District = mongoose.model('district');
 
 exports.index = function(req, res) {
 
@@ -12,25 +12,25 @@ exports.id = function(req, res) {
 }
 
 exports.new = function(req, res) {
-  const cat = {};
-  res.render('categories/new', {
+  const district = {};
+  res.render('districts/new', {
     session : req.session,
-    action : "/categories",
-    cat
+    action : "/districts",
+    district
   })
 
 }
 
 exports.post = function(req, res) {
-  const cat = Category(req.body)
-  cat.save()
+  const district = District(req.body)
+  district.save()
     .then(() => {
       res.redirect('/');
     ;})
 
     .catch((err) => {
       console.log(err);
-      res.send('Cannot make the category');
+      res.send('Cannot make the new district');
     });
 }
 

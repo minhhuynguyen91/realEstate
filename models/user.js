@@ -11,6 +11,13 @@ const userSchema = new mongoose.Schema({
     trim: true
   },
 
+  permRank: {
+    type: Number,
+    required: true
+  },
+
+  realEstateIds: [{type: mongoose.Schema.Types.ObjectId}],
+  
   password: {
     type: String,
     required: true

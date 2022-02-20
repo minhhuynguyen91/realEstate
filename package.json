@@ -1,5 +1,5 @@
 {
-  "name": "Real estate",
+  "name": "realEstate",
   "version": "1.0.1",
   "description": "Website to display real estate of user",
   "main": "index.js",
@@ -10,19 +10,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/minhhuynguyen91/commerceSite.git"
+    "url": "git+ssh://git@github.com/minhhuynguyen91/realEstate.git"
   },
   "author": "Minh",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/minhhuynguyen91/commerceSite/issues"
+    "url": "https://github.com/minhhuynguyen91/realEstate/issues"
   },
-  "homepage": "https://github.com/minhhuynguyen91/commerceSite#readme",
+  "homepage": "https://github.com/minhhuynguyen91/realEstate#readme",
   "dependencies": {
-    "@popperjs/core": "^2.9.0",
-    "bcrypt": "^3.0.6",
+    "@popperjs/core": "^2.11.2",
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
-    "bootstrap": "^5.0.0-beta2",
+    "bootstrap": "^5.1.3",
     "cookie-parser": "^1.4.4",
     "dotenv": "^8.0.0",
     "easymde": "^2.8.0",
@@ -31,11 +31,11 @@
     "express-validator": "^6.1.1",
     "jquery": "^3.6.0",
     "jsonwebtoken": "^8.5.1",
-    "marked": "^0.7.0",
+    "marked": "^4.0.12",
     "method-override": "^3.0.0",
     "moment": "^2.24.0",
     "mongoose": "^5.6.9",
-    "nodemon": "^1.19.1",
+    "nodemon": "^2.0.15",
     "pug": ">=3.0.1",
     "request": "^2.88.0",
     "showdown": "^1.9.0"

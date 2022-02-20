@@ -1,7 +1,12 @@
 const mongoose = require('mongoose');
 
-const categorySchema = new mongoose.Schema({
-  name: {
+const locationSchema = new mongoose.Schema({
+  cityName: {
+    type: String,
+    trim: true,
+  },
+  
+  districtName: {
     type: String,
     trim: true,
   },
@@ -11,7 +16,7 @@ const categorySchema = new mongoose.Schema({
     default: 999
   },
 
-  productIds: [{type: mongoose.Schema.Types.ObjectId}],
+  realEstateIds: [{type: mongoose.Schema.Types.ObjectId}],
 
   created_date: {
     type: Date,
@@ -25,4 +30,4 @@ const categorySchema = new mongoose.Schema({
   
 });
 
-module.exports = mongoose.model('Category', categorySchema);
+module.exports = mongoose.model('Location', locationSchema);
